@@ -6,6 +6,8 @@ from .models import ReviewModel
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -63,3 +65,13 @@ def evaluationview(request, pk):
         post.useful_review_record = post.useful_review_record + author_name
         post.save()
         return redirect('list')
+
+def emailfunc(request):
+    send_mail(
+		'タイトル',
+		'本文',
+		'送信元のメールアドレス',
+		['送信先のメールアドレス'],
+		fail_silently=False,
+	)
+    return HttpResponse('')

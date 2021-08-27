@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reviewpost.apps.ReviewpostConfig',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
 
 ROOT_URLCONF = 'reviewproject.urls'
@@ -139,3 +141,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/image/'
 
 LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = 'admin:index'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+INTERNAL_IPS = [
+    '127.0.0.1'
+]
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK" : lambda request: True,
+}
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'メールアドレス@gmail.com'
+EMAIL_HOST_PASSWORD = 'パスワード'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
